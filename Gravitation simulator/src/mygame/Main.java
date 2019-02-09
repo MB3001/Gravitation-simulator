@@ -136,7 +136,7 @@ public class Main extends SimpleApplication {
                         + "\nAmount of cannonballs created: " + quantity
                         + "\nCannon ball velocity: " + 5
                         + "\nCannon ball mass: " + 1
-                        + "\nGravitational constant: " + 200
+                        + "\nStandard gravitational parameter: " + 200
                 );
                 hudText.setLocalTranslation(300, hudText.getLineHeight() * 7, 0); // position
                 guiNode.attachChild(hudText);
