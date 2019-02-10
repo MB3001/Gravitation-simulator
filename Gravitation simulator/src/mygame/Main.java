@@ -131,14 +131,15 @@ public class Main extends SimpleApplication {
                 hudText.setText(
                         // the text
                         "Position: " + cam.getLocation()
+                        + "\nCamera direction: " + cam.getDirection()
                         + "\nDistance: " + cam.getLocation().length()
                         + "\nGravity acceleration: " + cam.getLocation().normalize().mult(-200f / cam.getLocation().lengthSquared()).length()
                         + "\nAmount of cannonballs created: " + quantity
-                        + "\nCannon ball velocity: " + 5
+                        + "\nCannon ball initial velocity: " + 5
                         + "\nCannon ball mass: " + 1
                         + "\nStandard gravitational parameter: " + 200
                 );
-                hudText.setLocalTranslation(300, hudText.getLineHeight() * 7, 0); // position
+                hudText.setLocalTranslation(300, hudText.getLineHeight() * 8, 0); // position
                 guiNode.attachChild(hudText);
             }
         }
