@@ -119,7 +119,7 @@ public class Main extends SimpleApplication {
 
         for (PhysicsRigidBody rbc : bulletAppState.getPhysicsSpace().getRigidBodyList()) {
 
-            rbc.applyCentralForce(rbc.getPhysicsLocation().normalize().mult(-200f / rbc.getPhysicsLocation().lengthSquared()/*.distanceSquared(ZERO)*/));
+            rbc.applyCentralForce(rbc.getPhysicsLocation().normalize().mult(-200f * rbc.getMass()/ rbc.getPhysicsLocation().lengthSquared()/*.distanceSquared(ZERO)*/));
 
             if (t % 60 != 0) {
                 if (hudText != null) {
