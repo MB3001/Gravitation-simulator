@@ -45,7 +45,7 @@ public class Main extends SimpleApplication {
 
     static {
         /**
-         * Initialize the cannon ball geometry
+         * Initialize the cannon ball geometry.
          */
         sphere = new Sphere(32, 32, 0.4f, true, false);
         sphere.setTextureMode(TextureMode.Projected);
@@ -54,7 +54,7 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         /**
-         * Set up Physics Game
+         * Set up Physics Game.
          */
         bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
@@ -74,7 +74,6 @@ public class Main extends SimpleApplication {
         ball_phy = new RigidBodyControl(1f);
         ball_geo.addControl(ball_phy);
         bulletAppState.getPhysicsSpace().add(ball_phy);
-        //bulletAppState.physicsTick(bulletAppState.getPhysicsSpace(), t);
         ball_phy.setGravity(ZERO);
         ball_phy.setLinearVelocity(Vector3f.UNIT_Y.mult(8));
 
@@ -119,29 +118,32 @@ public class Main extends SimpleApplication {
 
         for (PhysicsRigidBody rbc : bulletAppState.getPhysicsSpace().getRigidBodyList()) {
 
-            rbc.applyCentralForce(rbc.getPhysicsLocation().normalize().mult(-200f * rbc.getMass() / rbc.getPhysicsLocation().lengthSquared()/*.distanceSquared(ZERO)*/));
+            rbc.applyCentralForce(
+                    rbc.getPhysicsLocation().normalize().mult(
+                            -200f * rbc.getMass()
+                            / rbc.getPhysicsLocation().lengthSquared()/*.distanceSquared(ZERO)*/));
+        }
 
-            if (t % 60 == 0) {
-                if (hudText != null) {
-                    guiNode.detachChild(hudText);
-                }
-                hudText = new BitmapText(guiFont, false);
-                hudText.setSize(guiFont.getCharSet().getRenderedSize());      // font size
-                hudText.setColor(ColorRGBA.Cyan);                             // font color
-                hudText.setText(
-                        // the text
-                        "Position: " + cam.getLocation()
-                        + "\nCamera direction: " + cam.getDirection()
-                        + "\nDistance: " + cam.getLocation().length()
-                        + "\nGravity acceleration: " + cam.getLocation().normalize().mult(-200f / cam.getLocation().lengthSquared()).length()
-                        + "\nAmount of cannonballs created: " + quantity
-                        + "\nCannon ball initial velocity: " + 5
-                        + "\nCannon ball mass: " + 1
-                        + "\nStandard gravitational parameter: " + 200
-                );
-                hudText.setLocalTranslation(300, hudText.getLineHeight() * 8, 0); // position
-                guiNode.attachChild(hudText);
+        if (t % 60 == 0) {
+            if (hudText != null) {
+                guiNode.detachChild(hudText);
             }
+            hudText = new BitmapText(guiFont, false);
+            hudText.setSize(guiFont.getCharSet().getRenderedSize());      // font size
+            hudText.setColor(ColorRGBA.Cyan);                             // font color
+            hudText.setText(
+                    // the text
+                    "Position: " + cam.getLocation()
+                    + "\nCamera direction: " + cam.getDirection()
+                    + "\nDistance: " + cam.getLocation().length()
+                    + "\nGravity acceleration: " + cam.getLocation().normalize().mult(-200f / cam.getLocation().lengthSquared()).length()
+                    + "\nAmount of cannonballs created: " + quantity
+                    + "\nCannon ball initial velocity: " + 5
+                    + "\nCannon ball mass: " + 1
+                    + "\nStandard gravitational parameter: " + 200
+            );
+            hudText.setLocalTranslation(300, hudText.getLineHeight() * 8, 0); // position
+            guiNode.attachChild(hudText);
         }
 
         t++;
