@@ -138,8 +138,8 @@ public class Main extends SimpleApplication {
                     + "\nDistance: " + cam.getLocation().length()
                     + "\nGravity acceleration: " + cam.getLocation().normalize().mult(-200f / cam.getLocation().lengthSquared()).length()
                     + "\nAmount of cannonballs created: " + quantity
-                    + "\nCannon ball initial velocity: " + 5
-                    + "\nCannon ball mass: " + 1
+                    + "\nCannonball initial speed: " + 5
+                    + "\nCannonball mass: " + 1
                     + "\nStandard gravitational parameter: " + 200
             );
             hudText.setLocalTranslation(300, hudText.getLineHeight() * 8, 0); // position
